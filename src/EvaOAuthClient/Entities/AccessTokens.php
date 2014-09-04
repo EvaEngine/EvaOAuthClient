@@ -2,22 +2,42 @@
 
 namespace Eva\EvaOAuthClient\Entities;
 
+/**
+ * @package
+ * @category
+ * @subpackage
+ *
+ * @SWG\Model(id="AccessToken")
+ */
 class AccessTokens extends \Eva\EvaEngine\Mvc\Model
 {
     /**
+     * @SWG\Property(
+     *   name="adapterKey",
+     *   type="string",
+     *   description="OAuth provider key (weibo | tencent)"
+     * )
      *
      * @var string
      */
     public $adapterKey;
 
     /**
-     *
+     * @SWG\Property(
+     *   name="token",
+     *   type="string",
+     *   description="OAuth access token"
+     * )
      * @var string
      */
     public $token;
 
     /**
-     *
+     * @SWG\Property(
+     *   name="version",
+     *   type="string",
+     *   description="OAuth version (OAuth1 | OAuth2)"
+     * )
      * @var string
      */
     public $version;
@@ -26,16 +46,24 @@ class AccessTokens extends \Eva\EvaEngine\Mvc\Model
      *
      * @var string
      */
-    public $tokenStatus;
+    public $tokenStatus = 'active';
 
     /**
-     *
+     * @SWG\Property(
+     *   name="scope",
+     *   type="string",
+     *   description="OAuth scope"
+     * )
      * @var string
      */
     public $scope;
 
     /**
-     *
+     * @SWG\Property(
+     *   name="refreshToken",
+     *   type="string",
+     *   description="OAuth refresh token"
+     * )
      * @var string
      */
     public $refreshToken;
@@ -47,7 +75,11 @@ class AccessTokens extends \Eva\EvaEngine\Mvc\Model
     public $refreshedAt;
 
     /**
-     *
+     * @SWG\Property(
+     *   name="expireTime",
+     *   type="string",
+     *   description="OAuth token expire time, format as 2014-12-02 07:52:38"
+     * )
      * @var string
      */
     public $expireTime;
@@ -59,37 +91,62 @@ class AccessTokens extends \Eva\EvaEngine\Mvc\Model
     public $remoteToken;
 
     /**
-     *
+     * @SWG\Property(
+     *   name="remoteUserId",
+     *   type="string",
+     *   description="OAuth user unique id, use OpenID for tencent"
+     * )
      * @var string
      */
     public $remoteUserId;
 
     /**
-     *
+     * @SWG\Property(
+     *   name="remoteUserName",
+     *   type="string",
+     *   description="OAuth user name"
+     * )
      * @var string
      */
     public $remoteUserName;
 
     /**
-     *
+     * @SWG\Property(
+     *   name="remoteNickName",
+     *   type="string",
+     *   description="OAuth user nick name"
+     * )
      * @var string
      */
     public $remoteNickName;
 
     /**
-     *
+     * @SWG\Property(
+     *   name="remoteEmail",
+     *   type="string",
+     *   description="OAuth user email"
+     * )
      * @var string
      */
     public $remoteEmail;
 
     /**
-     *
+     * @SWG\Property(
+     *   name="remoteImageUrl",
+     *   type="string",
+     *   description="OAuth user avatar url"
+     * )
      * @var string
      */
     public $remoteImageUrl;
 
+
     /**
-     *
+     * @SWG\Property(
+     *   name="remoteImageExtra",
+     *   type="string",
+     *   description="OAuth user info json string"
+     * )
      * @var string
      */
     public $remoteExtra;
