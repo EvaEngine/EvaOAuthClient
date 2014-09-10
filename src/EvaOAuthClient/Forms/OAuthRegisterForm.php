@@ -13,8 +13,34 @@ use Phalcon\Validation\Validator\Identical;
 use Phalcon\Validation\Validator\StringLength;
 use Phalcon\Validation\Validator\Confirmation;
 
+/**
+ * @package
+ * @category
+ * @subpackage
+ *
+ * @SWG\Model(id="OAuthRegisterForm")
+ */
 class OAuthRegisterForm extends Form
 {
+    /**
+    * @SWG\Property(name="username",type="string",description="Username, allow alphanumeric and underline")
+     */
+    public $username;
+
+    /**
+     * @SWG\Property(name="email",type="string",description="Email")
+     */
+    public $email;
+
+    /**
+     * @SWG\Property(name="password",type="string",description="Password of the user")
+     */
+    public $password;
+
+    /**
+     * @SWG\Property(name="accesstoken",type="AccessToken",description="3rd part Access Token")
+     */
+    public $accesstoken;
 
     public function initialize($entity = null, $options = null)
     {

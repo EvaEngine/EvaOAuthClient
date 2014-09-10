@@ -9,9 +9,9 @@ use Eva\EvaEngine\Mvc\Model as BaseModel;
 
 class Register extends BaseModel
 {
-    public function register()
+    public function register($accessToken = null)
     {
-        $accessToken = OAuthManager::getAccessToken();
+        $accessToken = $accessToken ?: OAuthManager::getAccessToken();
         if (!$accessToken) {
             throw new Exception\ResourceConflictException('ERR_OAUTH_NO_ACCESS_TOKEN');
         }
