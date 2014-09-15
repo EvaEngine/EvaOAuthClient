@@ -11,7 +11,7 @@ class Register extends BaseModel
 {
     public function register($accessToken = null)
     {
-        $accessToken = $accessToken ?: OAuthManager::getAccessToken();
+        $accessToken = $accessToken ? : OAuthManager::getAccessToken();
         if (!$accessToken) {
             throw new Exception\ResourceConflictException('ERR_OAUTH_NO_ACCESS_TOKEN');
         }
@@ -19,12 +19,18 @@ class Register extends BaseModel
         $register = new UserRegister();
         $register->username = $this->username;
         $register->email = $this->email;
+        $disablePassword = true;
+        if ($this->password) {
+            $disablePassword = false;
+            $register->password = $this->password;
+        }
+
         $register->status = 'active';
         $register->accountType = 'basic';
         $register->emailStatus = 'inactive';
         $register->providerType = $accessToken['adapterKey'] . '_' . $accessToken['version'];
 
-        $user = $register->register(true);
+        $user = $register->register($disablePassword);
 
         $accessTokenEntity = new AccessTokens();
         $accessTokenEntity->assign($accessToken);
