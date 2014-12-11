@@ -11,7 +11,7 @@
     }
     ],
     "require": {
-        "allovince/evauser" : "dev-master",
+        "evaengine/evauser" : "dev-master",
         "allovince/evaoauth": "dev-master"
     },
     "autoload": {
