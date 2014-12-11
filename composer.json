@@ -11,11 +11,11 @@
     }
     ],
     "require": {
-	"allovince/evauser" : "dev-master",
+        "allovince/evauser" : "dev-master",
         "allovince/evaoauth": "dev-master"
-    }
+    },
     "autoload": {
-	"classmap" : ["Module.php"],
+        "classmap" : ["Module.php"],
         "psr-4": {"Eva\\EvaOAuthClient\\": "src/EvaOAuthClient"}
     }
 }
