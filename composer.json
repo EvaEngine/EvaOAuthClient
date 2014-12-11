@@ -1,5 +1,5 @@
 {
-    "name": "allovince/evaoauthclient",
+    "name": "evaengine/eva-oauth-client",
     "description": "Standard OAuth User Module of EvaEngine",
     "license": "BSD-3-Clause",
     "minimum-stability": "dev",
