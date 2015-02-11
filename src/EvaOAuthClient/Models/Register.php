@@ -7,30 +7,35 @@ use Eva\EvaOAuthClient\Entities\AccessTokens;
 use Eva\EvaEngine\Exception;
 use Eva\EvaEngine\Mvc\Model as BaseModel;
 
-class Register extends BaseModel
+class Register extends UserRegister
 {
     public function register($accessToken = null)
     {
+
         $accessToken = $accessToken ? : OAuthManager::getAccessToken();
+
         if (!$accessToken) {
             throw new Exception\ResourceConflictException('ERR_OAUTH_NO_ACCESS_TOKEN');
         }
 
-        $register = new UserRegister();
-        $register->username = $this->username;
-        $register->email = $this->email;
+//        $register = new UserRegister();
+//        $register->username = $this->username;
+//        $register->email = $this->email;
         $disablePassword = true;
         if ($this->password) {
             $disablePassword = false;
-            $register->password = $this->password;
+//            $register->password = $this->password;
         }
 
-        $register->status = 'active';
-        $register->accountType = 'basic';
-        $register->emailStatus = 'inactive';
-        $register->providerType = $accessToken['adapterKey'] . '_' . $accessToken['version'];
+        $this->status = 'active';
+        $this->accountType = 'basic';
+        $this->emailStatus = 'inactive';
+        $this->providerType = $accessToken['adapterKey'] . '_' . $accessToken['version'];
+        $this->avatar = $accessToken['remoteImageUrl'];         //添加头像
 
-        $user = $register->register($disablePassword);
+//        $user = $register->register($disablePassword);
+
+        $user = parent::register($disablePassword);
 
         $accessTokenEntity = new AccessTokens();
         $accessTokenEntity->assign($accessToken);

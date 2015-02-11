@@ -94,8 +94,10 @@ class AuthController extends ControllerBase
 
     public function registerAction()
     {
-        $session = $this->getDI()->get('session');
-        $accessToken = $session->get('access-token');
+//        $session = $this->getDI()->get('session');
+//        $accessToken = $session->get('access-token');
+        $accessToken = OAuthManager::getAccessToken();
+
         if (!$accessToken) {
             return $this->response->redirect($this->getDI()->getConfig()->oauth->registerFailedRedirectUri);
         }
