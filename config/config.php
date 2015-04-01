@@ -154,6 +154,11 @@ return array(
                 'consumer_key' => '',
                 'consumer_secret' => ''
             ),
+            'hundsun' => array(
+                'enable' => 0,
+                'consumer_key' => '',
+                'consumer_secret' => ''
+            ),
         )
     ),
 );
