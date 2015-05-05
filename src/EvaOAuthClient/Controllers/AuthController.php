@@ -20,11 +20,14 @@ class AuthController extends ControllerBase
         $oauthStr = $oauthStr === 'oauth1' ? 'oauth1' : 'oauth2';
         $config = $this->getDI()->getConfig();
         $url = $this->getDI()->get('url');
+        $next = $this->request->get('next');
         $callback = $url->get("/auth/access/$service/$oauthStr");
-
+        if ($next) {
+            $callback .= '?next=' . urlencode($next);
+        }
         $oauth = new OAuthService();
         $oauth->setOptions(array(
-            'callbackUrl' => $callback ,
+            'callbackUrl' => $callback,
             'consumerKey' => $config->oauth->$oauthStr->$service->consumer_key,
             'consumerSecret' => $config->oauth->$oauthStr->$service->consumer_secret,
         ));
@@ -36,6 +39,7 @@ class AuthController extends ControllerBase
         $requestToken = $oauth->getAdapter()->getRequestToken();
         OAuthManager::saveRequestToken($requestToken);
         $requestTokenUrl = $oauth->getAdapter()->getRequestTokenUrl();
+
         return $this->response->redirect($requestTokenUrl, true);
     }
 
@@ -47,7 +51,6 @@ class AuthController extends ControllerBase
         $config = $this->getDI()->getConfig();
         $url = $this->getDI()->get('url');
         $callback = $url->get("/auth/access/$service/$oauthStr");
-
         $oauth = new OAuthService();
         $oauth->setOptions(array(
             'callbackUrl' => $callback,
