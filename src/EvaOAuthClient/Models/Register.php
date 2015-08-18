@@ -30,7 +30,7 @@ class Register extends UserRegister
         $this->status = 'active';
         $this->accountType = 'basic';
         $this->emailStatus = 'inactive';
-        $this->providerType = $this->getProviderType('web', 'oauth');
+        $this->providerType = $this->getProviderType('web', 'oauth', $accessToken['adapterKey']);
         $this->avatar = isset($accessToken['remoteImageUrl']) ? $accessToken['remoteImageUrl'] : '';         //添加头像
 
 //        $user = $register->register($disablePassword);
